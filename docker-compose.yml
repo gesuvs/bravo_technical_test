@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:13.7
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - '5432:5432'
+    volumes: 
+      - db:/var/lib/postgresql/data
+      - ./database/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
+
+volumes:
+  db:
+    driver: local
